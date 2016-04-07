@@ -40,8 +40,8 @@ static const char ARDUINO_WIFI_SHIELD_UDP_FW_VER[] = "1.1.0";
 static const char INTEL_WIFI_SHIELD_FW_VER[] = "1.2.0";
 
 /// WiFi network info and credentials
-char ssid[] = "PussyCat24";
-char pass[] = "benterikpovls";
+char ssid[] = "EasySetup123";
+char pass[] = "EasySetup123";
 
 int ConnectToNetwork()
 {

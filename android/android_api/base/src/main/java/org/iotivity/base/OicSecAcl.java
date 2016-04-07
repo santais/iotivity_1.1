@@ -33,16 +33,16 @@ public class OicSecAcl implements Serializable {
     private List<String> resources;
     private List<String> periods;
     private List<String> recurrences;
-    private String rownerID;
+    private List<String> owners;
 
     public OicSecAcl(String subject, List<String> recurrences, List<String> periods, int permission,
-            List<String> resources, String rownerID) {
+            List<String> resources, List<String> owners) {
         this.subject = subject;
         this.recurrences = recurrences;
         this.periods = periods;
         this.permission = permission;
         this.resources = resources;
-        this.rownerID = rownerID;
+        this.owners = owners;
     }
 
     public String getSubject() {
@@ -53,9 +53,12 @@ public class OicSecAcl implements Serializable {
         this.subject = subject;
     }
 
+    public List<String> getOwners() {
+        return owners;
+    }
 
-    public void setRownerID(String rownerID) {
-        this.rownerID = rownerID;
+    public void setOwners(List<String> owners) {
+        this.owners = owners;
     }
 
     public List<String> getRecurrences() {
@@ -110,7 +113,11 @@ public class OicSecAcl implements Serializable {
         return this.recurrences.get(i);
     }
 
-    public String getRownerID() {
-        return this.rownerID;
+    public int getOwnersCount() {
+        return this.owners.size();
+    }
+
+    public String getOwners(int i) {
+        return this.owners.get(i);
     }
 }

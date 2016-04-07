@@ -121,7 +121,8 @@ extern jmethodID g_mid_OcOicSecAcl_get_permission;
 extern jmethodID g_mid_OcOicSecAcl_get_periods_cnt;
 extern jmethodID g_mid_OcOicSecAcl_get_periods;
 extern jmethodID g_mid_OcOicSecAcl_get_recurrences;
-extern jmethodID g_mid_OcOicSecAcl_get_rownerID;
+extern jmethodID g_mid_OcOicSecAcl_get_owners_cnt;
+extern jmethodID g_mid_OcOicSecAcl_get_owners;
 
 typedef void(*RemoveListenerCallback)(JNIEnv* env, jobject jListener);
 

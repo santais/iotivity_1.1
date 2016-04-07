@@ -22,7 +22,6 @@
 
 #include "JniSecureUtils.h"
 #include "JniOcSecureResource.h"
-#include "srmutility.h"
 #include "base64.h"
 
 jobject JniSecureUtils::convertProvisionresultVectorToJavaList(JNIEnv *env, const OC::PMResultList_t *result)
@@ -108,6 +107,16 @@ std::string JniSecureUtils::convertUUIDtoStr(OicUuid_t uuid)
     return deviceId.str();
 }
 
+void JniSecureUtils::convertStrToUUID(char *str, OicUuid_t &uuid)
+{
+    unsigned char base64Buff[sizeof(((OicUuid_t*)0)->id)] = {};
+    uint32_t outLen = 0;
+    B64Result b64Ret = B64_OK;
+
+    b64Ret = b64Decode(str, strlen(str), base64Buff, sizeof(base64Buff), &outLen);
+    memcpy(uuid.id, base64Buff, outLen);
+}
+
 jobject JniSecureUtils::convertUUIDVectorToJavaStrList(JNIEnv *env, UuidList_t &vector)
 {
     jobject jList = env->NewObject(g_cls_LinkedList, g_mid_LinkedList_ctor);
@@ -144,14 +153,8 @@ OCStackResult JniSecureUtils::convertJavaACLToOCAcl(JNIEnv *env, jobject in, Oic
     }
 
     char *str = (char*) env->GetStringUTFChars(jData, 0);
-    if (OC_STACK_OK == ConvertStrToUuid(str, &acl->subject))
-    {
-        env->ReleaseStringUTFChars(jData, str);
-    }
-    else
-    {
-        return OC_STACK_ERROR;
-    }
+    convertStrToUUID(str, acl->subject);
+    env->ReleaseStringUTFChars(jData, str);
 
     jint jCount = (jint) env->CallIntMethod(in, g_mid_OcOicSecAcl_get_resources_cnt);
     if (!jCount || env->ExceptionCheck())
@@ -213,22 +216,31 @@ OCStackResult JniSecureUtils::convertJavaACLToOCAcl(JNIEnv *env, jobject in, Oic
         acl->recurrences[i] = (char*) env->GetStringUTFChars(jData, 0);
     }
 
-    jData = (jstring) env->CallObjectMethod(in, g_mid_OcOicSecAcl_get_rownerID);
-    if (!jData || env->ExceptionCheck())
+    jCount = (jint) env->CallIntMethod(in, g_mid_OcOicSecAcl_get_owners_cnt);
+    if (!jCount ||  env->ExceptionCheck())
     {
         return OC_STACK_ERROR;
     }
 
-    str = (char*) env->GetStringUTFChars(jData, 0);
-
-    if (OC_STACK_OK == ConvertStrToUuid(str, &acl->rownerID))
+    acl->ownersLen = jCount;
+    acl->owners = new OicUuid_t[acl->ownersLen];
+    if (!acl->owners)
     {
+        return OC_STACK_ERROR;
+    }
+
+    for (jint i = 0; i < jCount; ++i)
+    {
+        args[0].i = i;
+        jData = (jstring) env->CallObjectMethodA(in, g_mid_OcOicSecAcl_get_owners, args);
+        if (!jData ||  env->ExceptionCheck())
+        {
+            return OC_STACK_ERROR;
+        }
+
+        str = (char*) env->GetStringUTFChars(jData, 0);
+        convertStrToUUID(str, acl->owners[i]);
         env->ReleaseStringUTFChars(jData, str);
     }
-    else
-    {
-        return OC_STACK_ERROR;
-    }
-
     return OC_STACK_OK;
 }

@@ -85,7 +85,7 @@ JNIEXPORT void JNICALL Java_org_iotivity_base_OcProvisioning_ownershipTransferCB
                 delete jniPinListener;
                 jniPinListener = new JniPinCheckListener(env, jListener);
                 CBData.loadSecretCB = InputPinCodeCallback;
-                CBData.createSecureSessionCB = CreateSecureSessionRandomPinCallback;
+                CBData.createSecureSessionCB = CreateSecureSessionRandomPinCallbak;
                 CBData.createSelectOxmPayloadCB = CreatePinBasedSelectOxmPayload;
                 CBData.createOwnerTransferPayloadCB = CreatePinBasedOwnerTransferPayload;
                 result = OCSecure::setOwnerTransferCallbackData((OicSecOxm_t)OxmType,
@@ -123,11 +123,6 @@ JNIEXPORT jobjectArray JNICALL Java_org_iotivity_base_OcProvisioning_discoverUno
 
     try
     {
-        if (timeout < 0)
-        {
-            ThrowOcException(OC_STACK_INVALID_PARAM, "Timeout value cannot be negative");
-            return nullptr;
-        }
         OCStackResult result = OCSecure::discoverUnownedDevices((unsigned short)timeout, list);
 
         if (OC_STACK_OK != result)
@@ -196,11 +191,6 @@ JNIEXPORT jobjectArray JNICALL Java_org_iotivity_base_OcProvisioning_discoverOwn
 
     try
     {
-        if (timeout < 0)
-        {
-            ThrowOcException(OC_STACK_INVALID_PARAM, "Timeout value cannot be negative");
-            return nullptr;
-        }
         OCStackResult result = OCSecure::discoverOwnedDevices((unsigned short)timeout, list);
         if (OC_STACK_OK != result)
         {
@@ -231,11 +221,6 @@ JNIEXPORT jobjectArray JNICALL Java_org_iotivity_base_OcProvisioning_getDeviceSt
 
     try
     {
-        if (timeout < 0)
-        {
-            ThrowOcException(OC_STACK_INVALID_PARAM, "Timeout value cannot be negative");
-            return nullptr;
-        }
         OCStackResult result = OCSecure::getDevInfoFromNetwork((unsigned short)timeout,
                 ownedDevList, unownedDevList);
         if (OC_STACK_OK != result)

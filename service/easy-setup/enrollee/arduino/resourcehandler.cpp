@@ -58,9 +58,9 @@ OCEntityHandlerResult ProcessPutRequest(OCEntityHandlerRequest *ehRequest, OCRep
 OCEntityHandlerResult ProcessPostRequest(OCEntityHandlerRequest *ehRequest, OCRepPayload** payload);
 OCRepPayload* constructResponse(OCEntityHandlerRequest *ehRequest);
 
-ESEnrolleeResourceEventCallback gNetworkInfoProvEventCb = NULL;
+ResourceEventCallback gNetworkInfoProvEventCb = NULL;
 
-void RegisterResourceEventCallBack(ESEnrolleeResourceEventCallback cb)
+void RegisterResourceEventCallBack(ResourceEventCallback cb)
 {
     gNetworkInfoProvEventCb = cb;
 }
@@ -77,8 +77,8 @@ void GetTargetNetworkInfoFromProvResource(char *name, char *pass)
 {
     if (name != NULL && pass != NULL)
     {
-        OICStrcpy(name, MAXSSIDLEN, gProvResource.tnn);
-        OICStrcpy(pass, MAXNETCREDLEN, gProvResource.cd);
+        OICStrcpy(name, sizeof(name), gProvResource.tnn);
+        OICStrcpy(pass, sizeof(pass), gProvResource.cd);
     }
 }
 

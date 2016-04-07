@@ -235,8 +235,7 @@ public class ResourceObserverView extends ViewPart {
                 resourceObserverListChangedListener);
     }
 
-    private static class ObserverContentProvider implements
-            IStructuredContentProvider {
+    class ObserverContentProvider implements IStructuredContentProvider {
 
         @Override
         public void dispose() {

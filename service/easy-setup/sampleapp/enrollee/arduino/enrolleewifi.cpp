@@ -117,7 +117,7 @@ void PrintMenu()
     Serial.println("============");
 }
 
-void EventCallbackInApp(ESResult esResult, ESEnrolleeState enrolleeState)
+void EventCallbackInApp(ESResult esResult, EnrolleeState enrolleeState)
 {
     Serial.println("callback!!! in app");
 
@@ -173,8 +173,8 @@ void StartEasySetup()
 {
     OIC_LOG(DEBUG, TAG, "OCServer is starting...");
 
-    //ESInitEnrollee with sercurity mode disabled for arduino
-    if(ESInitEnrollee(CT_ADAPTER_IP, ssid, passwd, false, EventCallbackInApp) == ES_ERROR)
+    //InitEasySetup with sercurity mode disabled for arduino
+    if(InitEasySetup(CT_ADAPTER_IP, ssid, passwd, false, EventCallbackInApp) == ES_ERROR)
     {
         OIC_LOG(ERROR, TAG, "OnBoarding Failed");
         return;
@@ -185,9 +185,9 @@ void StartEasySetup()
     OIC_LOG_V(ERROR, TAG, "OnBoarding succeded. Successfully connected to ssid : %s",ssid);
 }
 
-void ESInitResources()
+void StartProvisioning()
 {
-    OIC_LOG(DEBUG, TAG, "ESInitResources is invoked...");
+    OIC_LOG(DEBUG, TAG, "StartProvisioning is invoked...");
 
     // Initialize the OC Stack in Server mode
     if (OCInit(NULL, 0, OC_SERVER) != OC_STACK_OK)
@@ -196,7 +196,7 @@ void ESInitResources()
         return;
     }
 
-    if (ESInitProvisioning() == ES_ERROR)
+    if (InitProvisioning() == ES_ERROR)
     {
         OIC_LOG(ERROR, TAG, "Init Provisioning Failed!!");
         return;
@@ -209,9 +209,9 @@ void StopEasySetup()
 
     g_isInitialized = false;
 
-    if (ESTerminateEnrollee() == ES_ERROR)
+    if (TerminateEasySetup() == ES_ERROR)
     {
-        OIC_LOG(ERROR, TAG, "ESTerminateEnrollee Failed!!");
+        OIC_LOG(ERROR, TAG, "TerminateEasySetup Failed!!");
         return;
     }
 
@@ -267,7 +267,7 @@ void loop()
                 break;
 
             case 'P': // start provisioning
-                ESInitResources();
+                StartProvisioning();
                 break;
 
             case 'T': // stop easy setup
@@ -288,7 +288,7 @@ void loop()
         if (WiFi.status() == WL_CONNECTED)
             is_connected = true;
         else if (is_connected)
-            ESTerminateEnrollee();
+            TerminateEasySetup();
 
         // Give CPU cycles to OCStack to perform send/recv and other OCStack stuff
         if (OCProcess() != OC_STACK_OK)

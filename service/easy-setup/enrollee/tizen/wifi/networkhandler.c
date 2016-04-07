@@ -33,7 +33,7 @@ const char *gSsid = "DLNA_LISMORE1";
 const char *gPass = "dlna@010203";
 char *gIpAddress = NULL;
 wifi_ap_h connectedWifi;
-ESEnrolleeNetworkEventCallback gNetworkEventCb;
+NetworkEventCallback gNetworkEventCb;
 static void ESActivateWifi();
 
 static const char*
@@ -152,8 +152,7 @@ static void start()
     ESActivateWifi();
 }
 
-void ConnectToWiFiNetwork(const char *ssid, const char *pass,
-                                                            ESEnrolleeNetworkEventCallback cb)
+void ConnectToWiFiNetwork(const char *ssid, const char *pass, NetworkEventCallback cb)
 {
     OIC_LOG_V(INFO, LOG_TAG, "ConnectToWiFiNetwork %s %s",ssid,pass);
     gPass = pass;

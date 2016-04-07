@@ -886,7 +886,7 @@ public class ResourceManager {
 
     public void deleteResources(final Set<String> searchTypes) {
         synchronized (resourceMap) {
-            if (resourceMap.isEmpty()) {
+            if (null == resourceMap || resourceMap.isEmpty()) {
                 return;
             }
         }

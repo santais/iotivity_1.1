@@ -18,7 +18,6 @@
 //
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-#include <condition_variable>
 #include <iostream>
 #include <vector>
 #include <condition_variable>
@@ -30,6 +29,8 @@
 #include "RCSResourceObject.h"
 #include "RCSAddress.h"
 #include "SceneList.h"
+
+
 
 using namespace OC;
 using namespace OIC::Service;
@@ -53,7 +54,7 @@ Run g_currentRun;
 
 struct CloseApp {};
 
-const std::vector<std::string> resourceTypes{"core.light", "core.fan"};
+const std::vector<std::string> resourceTypes{"core.light", "oic.d.fan"};
 const std::string relativetUri = OC_RSRVD_WELL_KNOWN_URI;
 
 std::mutex mtx;

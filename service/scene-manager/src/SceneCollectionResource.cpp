@@ -186,6 +186,7 @@ namespace OIC
                 return;
             }
 
+            // MP Fixed std::move from sceneName
             m_sceneCollectionResourceObject->setAttribute(
                     SCENE_KEY_LAST_SCENE, sceneName);
 
@@ -196,7 +197,7 @@ namespace OIC
                             shared_from_this(), std::move(executeCB));
                 for (auto & it : m_sceneMembers)
                 {
-                    it->execute(std::move(sceneName), std::bind(
+                    it->execute(sceneName, std::bind(
                             &SceneExecuteResponseHandler::onResponse, executeHandler,
                             std::placeholders::_1, std::placeholders::_2));
                 }

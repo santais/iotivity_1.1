@@ -95,10 +95,9 @@ namespace OIC
             {
                 try
                 {
-                    bundle = m_xmlDoc.first_node();
-                    if (bundle)
+                    if (m_xmlDoc.first_node())
                     {
-                        for (bundle = bundle->first_node(BUNDLE_TAG); bundle; bundle =
+                        for (bundle = m_xmlDoc.first_node()->first_node(BUNDLE_TAG); bundle; bundle =
                                  bundle->next_sibling())
                         {
                             std::map< std::string, std::string > bundleMap;
@@ -140,10 +139,9 @@ namespace OIC
                     std::map< std::string, std::string > bundleConfigMap;
 
                     // <bundle>
-                    bundle = m_xmlDoc.first_node();
-                    if (bundle)
+                    if (m_xmlDoc.first_node())
                     {
-                        for (bundle = bundle->first_node(BUNDLE_TAG); bundle; bundle =
+                        for (bundle = m_xmlDoc.first_node()->first_node(BUNDLE_TAG); bundle; bundle =
                                  bundle->next_sibling())
                         {
                             // <id>
@@ -193,7 +191,7 @@ namespace OIC
             }
         }
 
-        void Configuration::getResourceConfiguration(std::string bundleId, std::string resourceUri,
+        void Configuration::getResourceConfiguration(std::string bundleId, std::string resourceName,
                         resourceInfo *resourceInfoOut){
             rapidxml::xml_node< char > *bundle;
             rapidxml::xml_node< char > *resource;
@@ -202,18 +200,17 @@ namespace OIC
             string strBundleId;
             string strKey, strValue;
             OIC_LOG_V(INFO, CONTAINER_TAG, "Loading resource configuration for %s %s!",
-                bundleId.c_str(), resourceUri.c_str());
+                    bundleId.c_str(), resourceName.c_str());
 
             if (m_loaded)
             {
                 try
                 {
                     // <bundle>
-                    bundle = m_xmlDoc.first_node();
-                    if (bundle)
+                    if (m_xmlDoc.first_node())
                     {
-                        for (bundle = bundle->first_node(BUNDLE_TAG); bundle;
-                            bundle = bundle->next_sibling())
+                        for (bundle = m_xmlDoc.first_node()->first_node(BUNDLE_TAG); bundle; bundle =
+                                 bundle->next_sibling())
                         {
                             // <id>
                             strBundleId = bundle->first_node(BUNDLE_ID)->value();
@@ -225,9 +222,9 @@ namespace OIC
                             {
                                 OIC_LOG_V(INFO, CONTAINER_TAG, "Inspecting");
                                 // <resourceInfo>
-                                bundle = bundle->first_node(OUTPUT_RESOURCES_TAG);
-                                if (bundle){
-                                    for (resource = bundle->first_node(OUTPUT_RESOURCE_INFO);
+                                if (bundle->first_node(OUTPUT_RESOURCES_TAG)){
+                                    for (resource = bundle->first_node(OUTPUT_RESOURCES_TAG)->
+                                            first_node(OUTPUT_RESOURCE_INFO);
                                          resource; resource = resource->next_sibling())
                                     {
 
@@ -239,18 +236,12 @@ namespace OIC
 
                                             if (!strKey.compare(OUTPUT_RESOURCE_NAME))
                                             {
-                                                
+                                                if (trim_both(strValue).compare(resourceName) != 0) break;
                                                 resourceInfoOut->name = trim_both(strValue);
                                             }
 
                                             else if (!strKey.compare(OUTPUT_RESOURCE_URI))
-                                            {
-                                                if (trim_both(strValue).compare(resourceUri) != 0)
-                                                {
-                                                    break;
-                                                }
                                                 resourceInfoOut->uri = trim_both(strValue);
-                                            }
 
                                             else if (!strKey.compare(OUTPUT_RESOURCE_ADDR))
                                                 resourceInfoOut->address = trim_both(strValue);
@@ -327,10 +318,9 @@ namespace OIC
                 try
                 {
                     // <bundle>
-                    bundle = m_xmlDoc.first_node();
-                    if (bundle)
+                    if (m_xmlDoc.first_node())
                     {
-                        for (bundle = bundle->first_node(BUNDLE_TAG); bundle; bundle =
+                        for (bundle = m_xmlDoc.first_node()->first_node(BUNDLE_TAG); bundle; bundle =
                                  bundle->next_sibling())
                         {
                             // <id>
@@ -343,10 +333,9 @@ namespace OIC
                             {
                                 OIC_LOG_V(INFO, CONTAINER_TAG, "Inspecting");
                                 // <resourceInfo>
-                                bundle = bundle->first_node(OUTPUT_RESOURCES_TAG);
-                                if (bundle)
+                                if (bundle->first_node(OUTPUT_RESOURCES_TAG))
                                 {
-                                    for (resource = bundle->
+                                    for (resource = bundle->first_node(OUTPUT_RESOURCES_TAG)->
                                             first_node(OUTPUT_RESOURCE_INFO);
                                          resource; resource = resource->next_sibling())
                                     {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EasySetup.iml" filepath="$PROJECT_DIR$/EasySetup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EasySetupCore-debug/EasySetupCore-debug.iml" filepath="$PROJECT_DIR$/EasySetupCore-debug/EasySetupCore-debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iotivity-base-armeabi-v7a-debug/iotivity-base-armeabi-v7a-debug.iml" filepath="$PROJECT_DIR$/iotivity-base-armeabi-v7a-debug/iotivity-base-armeabi-v7a-debug.iml" />
+    </modules>
+  </component>
+</project>

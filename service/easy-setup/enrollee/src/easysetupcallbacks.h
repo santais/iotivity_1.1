@@ -38,26 +38,26 @@ extern "C" {
 // Private internal callback function prototypes for Easy setup [Enrollee]
 //-----------------------------------------------------------------------------
 
- /*
+ /* 
  * Callback for on boarding
  */
-void ESOnboardingCallback(ESResult esResult);
+void OnboardingCallback(ESResult esResult);
 
- /*
+ /* 
  * Callback for provisioning
  */
-void ESProvisioningCallback(ESResult SSSS);
+void ProvisioningCallback(ESResult SSSS);
 
- /*
+ /* 
  * Callback for on boarding target Network
  */
-void ESOnboardingCallbackTargetNet(ESResult esResult);
+void OnboardingCallbackTargetNet(ESResult esResult);
 
- /*
- * Function for validating the parameter for ESInitEnrollee API
+ /* 
+ * Function for validating the parameter for InitEasySetup API
  */
-static bool ESEnrolleeValidateParam(OCConnectivityType networkType, const char *ssid,
-                                                const char *passwd, ESEnrolleeEventCallback cb);
+static bool ValidateParam(OCConnectivityType networkType, const char *ssid, const char *passwd,
+              EventCallback cb);
 
 #ifdef __cplusplus
 }

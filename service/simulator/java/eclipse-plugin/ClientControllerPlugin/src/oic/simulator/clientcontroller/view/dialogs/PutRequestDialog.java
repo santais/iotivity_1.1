@@ -634,8 +634,7 @@ public class PutRequestDialog extends TitleAreaDialog {
         return (AttributeElement) item.getData();
     }
 
-    private static class AttributeContentProvider implements
-            ITreeContentProvider {
+    class AttributeContentProvider implements ITreeContentProvider {
 
         @Override
         public void dispose() {
@@ -688,7 +687,7 @@ public class PutRequestDialog extends TitleAreaDialog {
         }
     }
 
-    private static class AttributeLabelProvider implements ITableLabelProvider {
+    class AttributeLabelProvider implements ITableLabelProvider {
 
         @Override
         public void addListener(ILabelProviderListener arg0) {

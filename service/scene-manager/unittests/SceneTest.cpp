@@ -126,7 +126,6 @@ TEST_F(SceneTest, createSceneInstanceByEmptyName)
 TEST_F(SceneTest, getSceneInstanceBySceneName)
 {
     createSceneCollection();
-    createScene();
     auto scene = pSceneCollection->getScene("SceneTestName_2");
     EXPECT_EQ("SceneTestName_2", scene->getName());
 }

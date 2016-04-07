@@ -49,7 +49,7 @@
  *
  * @param esResult ESResult provides the current state of the network connection status
  */
-typedef void (*ESEnrolleeNetworkEventCallback)(ESResult esResult);
+typedef void (*NetworkEventCallback)(ESResult esResult);
 
 typedef struct
 {
@@ -61,8 +61,7 @@ typedef struct
     byte mac[6];
 } NetworkInfo;
 
-ESResult ConnectToWiFiNetwork(const char *ssid, const char *pass,
-                                                            ESEnrolleeNetworkEventCallback);
+ESResult ConnectToWiFiNetwork(const char *ssid, const char *pass, NetworkEventCallback);
 ESResult getCurrentNetworkInfo(OCConnectivityType targetType, NetworkInfo *info);
 
 #endif

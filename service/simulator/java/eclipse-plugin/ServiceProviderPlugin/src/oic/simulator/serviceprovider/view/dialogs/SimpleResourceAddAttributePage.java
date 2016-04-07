@@ -337,8 +337,7 @@ public class SimpleResourceAddAttributePage extends WizardPage {
                 });
     }
 
-    private static class AttributeContentProvider implements
-            ITreeContentProvider {
+    class AttributeContentProvider implements ITreeContentProvider {
 
         List<AttributeHelper> attList = new ArrayList<AttributeHelper>();
 

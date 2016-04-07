@@ -771,8 +771,7 @@ public class AttributeView extends ViewPart {
             observeResButton.setEnabled(visibility);
     }
 
-    private static class AttributeContentProvider implements
-            ITreeContentProvider {
+    class AttributeContentProvider implements ITreeContentProvider {
 
         @Override
         public void dispose() {
@@ -825,7 +824,7 @@ public class AttributeView extends ViewPart {
         }
     }
 
-    private static class AttributeLabelProvider implements ITableLabelProvider {
+    class AttributeLabelProvider implements ITableLabelProvider {
 
         @Override
         public void addListener(ILabelProviderListener arg0) {

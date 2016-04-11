@@ -56,7 +56,11 @@ class MediatorRichTest: public TestWithMock
 };
 
 //callbacks
-void easySetupStatusCallback (std::shared_ptr< EasySetupStatus > easySetupStatus) {}
+void easySetupStatusCallback (std::shared_ptr< EasySetupStatus > /*easySetupStatus*/)
+{
+
+
+}
 
 /* Test cases for easysetyup class*/
 
@@ -93,9 +97,17 @@ TEST_F(MediatorRichTest, testCreateEnrolleeDevice)
 TEST_F(MediatorRichTest, testCreateEnrolleeDeviceNegative)
 {
     RemoteEnrollee::shared_ptr remoteEnrollee = NULL;
-    ProvConfig netInfo ;
+    ProvConfig netInfo;
     WiFiOnboadingConnection onboardingConn;
     EasySetup *easysetupInstance = EasySetup::getInstance();
+
+    netInfo.connType = CT_ADAPTER_IP;
+
+    OICStrcpy(netInfo.provData.WIFI.ssid, NET_WIFI_SSID_SIZE - 1, ssid.c_str());
+    OICStrcpy(netInfo.provData.WIFI.pwd, NET_WIFI_PWD_SIZE - 1, pwd.c_str());
+
+    onboardingConn.isSecured = false;
+    OICStrcpy(onboardingConn.ipAddress, IPV4_ADDR_SIZE - 1, ipaddress.c_str());
 
     //calling the createEnrolleeDevice
     remoteEnrollee = easysetupInstance->createEnrolleeDevice(netInfo, onboardingConn);

@@ -125,10 +125,12 @@ ESResult ConnectToWiFiNetwork(const char *ssid, const char *pass,
 
     if (res == 0)
     {
+        OIC_LOG(DEBUG, ES_NH_TAG, "Network successfully connected");
         return ES_NETWORKCONNECTED;
     }
     else
     {
+        OIC_LOG(DEBUG, ES_NH_TAG, "Network unsuccessfully connected");
         return ES_NETWORKNOTCONNECTED;
     }
 }

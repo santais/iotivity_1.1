@@ -74,7 +74,10 @@ bool ESOnboard(const char * ssid, const char* passwd, ESEnrolleeNetworkEventCall
         else
         {
             OIC_LOG(DEBUG, ES_ENROLLEE_TAG, "Connecting to Mediator SoftAp");
-            ConnectToWiFiNetwork(ssid, passwd, cb);
+            if(ConnectToWiFiNetwork(ssid, passwd, cb) != ES_NETWORKCONNECTED)
+            {
+                return false;
+            }
         }
         return true;
     }

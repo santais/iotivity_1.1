@@ -57,7 +57,6 @@ enrollee_env.PrependUnique(CPPPATH = [
 		enrollee_env.get('SRC_DIR') + '/extlibs/cjson',
 		enrollee_env.get('SRC_DIR') + '/extlibs/sqlite3',
 		enrollee_env.get('SRC_DIR') + '/service/easy-setup/inc',
-		enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/linux/wifi',
 		enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/inc',
 		enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/src',
 		enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/arduino'])
@@ -94,8 +93,8 @@ if target_os == 'tizen':
 	enrollee_env.AppendUnique(RPATH = [enrollee_env.get('BUILD_DIR')])
 	enrollee_env.AppendUnique(CXXFLAGS = ['-pthread'])
 	enrollee_env.PrependUnique(LIBS = ['oc', 'octbstack', 'oc_logger', 'pthread', 'connectivity_abstraction'])
-	#enrollee_env.AppendUnique(CPPPATH = [
-	#enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/tizen/wifi'])
+	enrollee_env.AppendUnique(CPPPATH = [
+			       enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/tizen/wifi'])
 
 ######################################################################
 # Arduino Enrollee
@@ -146,8 +145,8 @@ if target_os == 'arduino':
 	enrollee_env.InstallTarget(es_sdk_static, 'libESEnrolleeSDK')
 
 #Go to build sample apps
-#if target_os == 'arduino':
-#	SConscript('../sampleapp/enrollee/arduino/SConscript')
+if target_os == 'arduino':
+	SConscript('../sampleapp/enrollee/arduino/SConscript')
 
 if target_os == 'linux':
 	SConscript('../sampleapp/enrollee/linux/SConscript')

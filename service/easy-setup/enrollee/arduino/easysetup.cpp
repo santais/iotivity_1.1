@@ -96,11 +96,17 @@ void ESProvisioningCallback(ESResult esResult)
     if (esResult == ES_RECVTRIGGEROFPROVRES)
     {
         GetTargetNetworkInfoFromProvResource(gTargetSsid, gTargetPass);
-        gEnrolleeStatusCb(ES_OK, ES_PROVISIONED_STATE);
         OIC_LOG(DEBUG, ES_ENROLLEE_TAG, "Connecting with target network");
 
         // Connecting/onboarding to target network
-        ConnectToWiFiNetwork(gTargetSsid, gTargetPass, ESOnboardingCallbackTargetNet);
+        if(ConnectToWiFiNetwork(gTargetSsid, gTargetPass, ESOnboardingCallbackTargetNet) == ES_NETWORKCONNECTED)
+        {
+            gEnrolleeStatusCb(ES_OK, ES_PROVISIONED_STATE);
+        }
+        else
+        {
+            gEnrolleeStatusCb(ES_ERROR, ES_PROVISIONED_STATE);
+        }
     }
     else
     {

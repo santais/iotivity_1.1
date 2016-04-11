@@ -57,6 +57,7 @@ enrollee_env.PrependUnique(CPPPATH = [
 		enrollee_env.get('SRC_DIR') + '/extlibs/cjson',
 		enrollee_env.get('SRC_DIR') + '/extlibs/sqlite3',
 		enrollee_env.get('SRC_DIR') + '/service/easy-setup/inc',
+		enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/linux/wifi',
 		enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/inc',
 		enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/src',
 		enrollee_env.get('SRC_DIR') + '/service/easy-setup/enrollee/arduino'])

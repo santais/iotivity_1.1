@@ -145,6 +145,10 @@ OCBaseResourceT * createResource(char* uri, OCResourceType* type, OCResourceInte
             resource->resourceProperties);
     OIC_LOG_V(DEBUG, TAG, "Created resource with OCStackResult: %s", res);
 
+    Serial.print("Created Resource with OCStackResult: ");
+    Serial.print(getOCStackResult(res));
+    Serial.print("\n");
+
     // Add types
     OCResourceType *currentType = resource->type->next;
     while(currentType != NULL)

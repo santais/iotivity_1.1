@@ -22,7 +22,7 @@
 #include "resource_types.h"
 #include "easysetup.h"
 
-static const int DELAY_TIME_INPUT_THREAD = 100;      // ms
+static const int DELAY_TIME_INPUT_THREAD = 1000;      // ms
 
 // Blinking LED
 static const char LED_PIN = 13;

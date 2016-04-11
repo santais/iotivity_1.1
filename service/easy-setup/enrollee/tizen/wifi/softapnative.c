@@ -26,11 +26,7 @@
  */
 void ESCreateSoftapNative(const char * ssid, const char* passwd, SoftAPCallbackNative cb)
 {
-    // TODO: Assign proper values after hardware integration is supported to create SoftAp
-    //We are not using this now. Assiging NULL to remove SVACE error
-    const char *ip = (char *)0;
-    const char *macaddr = (char *)0;
-    const char *devicename = (char *)0;
+    const char *ip, *macaddr, *devicename;
 
     // Soft is created successfully. This callback may be send from other cascaded callbacks
     cb(SOFTAP_SUCCESS, ip, macaddr, devicename);

@@ -760,8 +760,7 @@ public class AttributeView extends ViewPart {
                 automationUIListener);
     }
 
-    private static class AttributeContentProvider implements
-            ITreeContentProvider {
+    class AttributeContentProvider implements ITreeContentProvider {
 
         @Override
         public void dispose() {

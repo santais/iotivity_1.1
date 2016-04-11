@@ -178,7 +178,7 @@ void SimulatorManager::setDeviceInfo(const std::string &deviceName)
 
     typedef OCStackResult (*RegisterDeviceInfo)(const OCDeviceInfo);
 
-    OCDeviceInfo ocDeviceInfo {nullptr, nullptr};
+    OCDeviceInfo ocDeviceInfo;
     ocDeviceInfo.deviceName = const_cast<char *>(deviceName.c_str());
     invokeocplatform(static_cast<RegisterDeviceInfo>(OC::OCPlatform::registerDeviceInfo),
                      ocDeviceInfo);

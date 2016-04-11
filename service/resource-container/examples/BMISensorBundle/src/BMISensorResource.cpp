@@ -57,10 +57,10 @@ void BMISensorResource::onUpdatedInputResource(const std::string attributeName,
     m_mapInputData.clear();
 
     if (!attributeName.compare("weight"))
-        m_mapInputData.insert(std::make_pair("weight", values.back().get< std::string >()));
+        m_mapInputData.insert(std::make_pair("weight", values.back().toString()));
 
     if (!attributeName.compare("height"))
-        m_mapInputData.insert(std::make_pair("height", values.back().get< std::string >()));
+        m_mapInputData.insert(std::make_pair("height", values.back().toString()));
 
     executeLogic();
 }

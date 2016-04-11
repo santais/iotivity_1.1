@@ -330,8 +330,7 @@ public class MetaPropertiesView extends ViewPart {
                 devicePlatformInfoUIListener);
     }
 
-    private static class PropertycontentProvider implements
-            IStructuredContentProvider {
+    class PropertycontentProvider implements IStructuredContentProvider {
 
         @Override
         public void dispose() {

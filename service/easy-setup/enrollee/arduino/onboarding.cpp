@@ -60,14 +60,22 @@ bool ESBleOnboarding()
 /**
  * It will do onboarding based on the user's configuration.
  */
-bool ESOnboard(const char * ssid, const char* passwd, ESEnrolleeNetworkEventCallback cb)
+bool ESOnboard(const char * ssid, const char* passwd, NetworkEventCallback cb)
 {
     OIC_LOG(DEBUG, ES_ENROLLEE_TAG, "ESOnboard IN");
 
     if (ESSoftapOnboarding())
     {
-        OIC_LOG(DEBUG, ES_ENROLLEE_TAG, "Connecting to Mediator SoftAp");
-        ConnectToWiFiNetwork(ssid, passwd, cb);
+        if (ESSoftapAtEnrollee())
+        {
+            OIC_LOG(DEBUG, ES_ENROLLEE_TAG, "Create SoftAp at enrollee");
+            ESCreateSoftap(ssid, passwd, cb);
+        }
+        else
+        {
+            OIC_LOG(DEBUG, ES_ENROLLEE_TAG, "Connecting to Mediator SoftAp");
+            ConnectToWiFiNetwork(ssid, passwd, cb);
+        }
         return true;
     }
     else if (ESBleOnboarding())

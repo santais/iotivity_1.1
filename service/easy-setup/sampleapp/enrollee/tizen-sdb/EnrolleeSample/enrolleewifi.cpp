@@ -71,7 +71,7 @@ void PrintMenu()
     cout<<"============"<<endl;
 }
 
-void EventCallbackInApp(ESResult esResult, ESEnrolleeState enrolleeState)
+void EventCallbackInApp(ESResult esResult, EnrolleeState enrolleeState)
 {
     cout<<"Easy setup event callback"<<endl;
 
@@ -123,14 +123,14 @@ void StartEasySetup()
 {
     cout<<"StartEasySetup and onboarding started.."<<endl;
 
-    if(ESInitEnrollee(CT_ADAPTER_IP, ssid, passwd, gIsSecured, EventCallbackInApp) == ES_ERROR)
+    if(InitEasySetup(CT_ADAPTER_IP, ssid, passwd, gIsSecured, EventCallbackInApp) == ES_ERROR)
     {
         cout<<"StartEasySetup and onboarding Fail!!"<<endl;
         return;
     }
 }
 
-void ESInitResources()
+void StartOICStackAndStartResources()
 {
     cout<<"Starting Enrollee Provisioning"<<endl;
 
@@ -141,7 +141,7 @@ void ESInitResources()
         return;
     }
 
-    if (ESInitProvisioning() == ES_ERROR)
+    if (InitProvisioning() == ES_ERROR)
     {
         cout<<"Init Provisioning Failed!!"<<endl;
         return;
@@ -153,16 +153,16 @@ void ESInitResources()
         cout<<"Thread creation failed"<<endl;
     }
 
-    cout<<"ESInitProvisioning Success"<<endl;
+    cout<<"InitProvisioning Success"<<endl;
 }
 
 void StopEasySetup()
 {
     cout<<"StopEasySetup IN"<<endl;
 
-    if (ESTerminateEnrollee() == ES_ERROR)
+    if (TerminateEasySetup() == ES_ERROR)
     {
-        cout<<"ESTerminateEnrollee Failed!!"<<endl;
+        cout<<"TerminateEasySetup Failed!!"<<endl;
         return;
     }
 
@@ -211,7 +211,7 @@ int main()
 
             case 'P': // start provisioning
             case 'p':
-                ESInitResources();
+                StartOICStackAndStartResources();
                 break;
 
             case 'T': // stop easy setup

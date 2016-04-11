@@ -165,8 +165,7 @@ public class ModelArrayAddItemDialog extends TitleAreaDialog {
         }
     }
 
-    private static class AttributeContentProvider implements
-            ITreeContentProvider {
+    class AttributeContentProvider implements ITreeContentProvider {
 
         @Override
         public void dispose() {
@@ -215,7 +214,7 @@ public class ModelArrayAddItemDialog extends TitleAreaDialog {
         }
     }
 
-    private static class AttributeLabelProvider implements ITableLabelProvider {
+    class AttributeLabelProvider implements ITableLabelProvider {
 
         @Override
         public void addListener(ILabelProviderListener arg0) {

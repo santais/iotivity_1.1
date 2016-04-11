@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/fridgegroupclient/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/fridgegroupclient/build/intermediates/pre-dexed/debug/classes-aa549913b15d6576c7b278fbf47055bc625bdc7b.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/devicediscoveryserver/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/devicediscoveryserver/build/intermediates/pre-dexed/debug/classes-31b8d3f1fc1856c84d5a9dce899ec57e504a2f7b.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/fridgegroupserver/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/fridgegroupserver/build/intermediates/pre-dexed/debug/classes-1498a37f451ddfaf90677f895b02dbaf6f643765.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/groupserver/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/groupserver/build/intermediates/pre-dexed/debug/classes-46501b36f87d577fc51c6cd36dcfc17ea0d8ef74.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/presenceclient/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/presenceclient/build/intermediates/pre-dexed/debug/classes-e0a2400f8c5071799eee3709120739a6520ae09a.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/groupclient/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/groupclient/build/intermediates/pre-dexed/debug/classes-ce7e19b284a59afa6b44136abf7b72c61b33f4c0.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/simpleclient/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/simpleclient/build/intermediates/pre-dexed/debug/classes-15a47d58793a9360cd57135d150352bae9faca20.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/provisioningclient/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/provisioningclient/build/intermediates/pre-dexed/debug/classes-481b07bf793542eac5a70e93e185cedc6c0e5a4f.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/devicediscoveryclient/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/devicediscoveryclient/build/intermediates/pre-dexed/debug/classes-f75e5cd3ac1074d123377383235772af4138d362.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/fridgeserver/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/fridgeserver/build/intermediates/pre-dexed/debug/classes-5254b77048b0896ccf09eda276916b9acf230c77.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/fridgeclient/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/fridgeclient/build/intermediates/pre-dexed/debug/classes-087ef7c77bc8844dfeca6c58c698f1047a45a6c8.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/simpleserver/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/simpleserver/build/intermediates/pre-dexed/debug/classes-789d6fc02450e66474d657064fb79e43a2b8cc4a.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/android/examples/presenceserver/build/intermediates/exploded-aar/iotivity-base-armeabi-v7a-release/jars/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/android/examples/presenceserver/build/intermediates/pre-dexed/debug/classes-703dc0396f433931c86efa7f5e188d2c205d267d.jar" />
+    </item>
+
+</items>

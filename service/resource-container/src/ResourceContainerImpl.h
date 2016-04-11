@@ -42,7 +42,6 @@
 
 #define BUNDLE_ACTIVATION_WAIT_SEC 10
 #define BUNDLE_SET_GET_WAIT_SEC 10
-#define BUNDLE_PATH_MAXLEN 300
 
 using namespace OIC::Service;
 
@@ -107,6 +106,8 @@ namespace OIC
                 //<uri, DiscoverUnit>
                 string m_configFile;
                 Configuration *m_config;
+                // holds for a bundle the threads for bundle activation
+                map< std::string, boost::thread > m_activators;
                 // used for synchronize the resource registration of multiple bundles
                 std::mutex registrationLock;
                 // used to synchronize the startup of the container with other operation

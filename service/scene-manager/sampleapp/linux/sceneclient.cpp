@@ -29,6 +29,8 @@
 #include "RCSAddress.h"
 #include "RemoteSceneList.h"
 
+#include <condition_variable>
+
 using namespace OC;
 using namespace OIC::Service;
 
@@ -235,7 +237,6 @@ void executeScene()
 }
 
 // --- Scene Manager Remote API sample
-
 void configurePlatform()
 {
     PlatformConfig config

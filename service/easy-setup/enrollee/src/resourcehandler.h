@@ -34,7 +34,7 @@
 extern "C" {
 #endif
 
-typedef void (*ESEnrolleeResourceEventCallback)(ESResult);
+typedef void (*ResourceEventCallback)(ESResult);
 
 /* Structure to represent a Light resource */
 typedef struct PROVRESOURCE
@@ -61,7 +61,7 @@ OCStackResult CreateProvisioningResource(bool isSecured);
 OCStackResult DeleteProvisioningResource();
 
 void GetTargetNetworkInfoFromProvResource(char *, char *);
-void RegisterResourceEventCallBack(ESEnrolleeResourceEventCallback);
+void RegisterResourceEventCallBack(ResourceEventCallback);
 void UnRegisterResourceEventCallBack(void);
 
 #ifdef __cplusplus

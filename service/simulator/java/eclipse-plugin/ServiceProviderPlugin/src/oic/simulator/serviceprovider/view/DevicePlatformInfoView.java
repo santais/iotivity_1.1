@@ -339,8 +339,7 @@ public class DevicePlatformInfoView extends ViewPart {
         }
     }
 
-    private static class PropertycontentProvider implements
-            IStructuredContentProvider {
+    class PropertycontentProvider implements IStructuredContentProvider {
 
         @Override
         public void dispose() {

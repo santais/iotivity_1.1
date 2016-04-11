@@ -56,9 +56,8 @@ import org.eclipse.ui.dialogs.PatternFilter;
 import org.eclipse.ui.part.ViewPart;
 
 import java.io.BufferedWriter;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -432,10 +431,9 @@ public class LogView extends ViewPart {
                 String data = sb.toString();
                 BufferedWriter out = null;
                 try {
-                    out = new BufferedWriter(new OutputStreamWriter(
-                            new FileOutputStream(name), "UTF-8"));
+                    out = new BufferedWriter(new FileWriter(name));
                     out.write(data);
-                } catch (Exception e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                     MessageDialog.openError(
                             Display.getDefault().getActiveShell(),

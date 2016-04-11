@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/build/intermediates/exploded-aar/EasySetup/iotivity-base-armeabi-v7a-debug/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a9cb89321c1ab05d118c8bd486792fca91596675">
+        <dex dex="/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/build/intermediates/pre-dexed/debug/EasySetup-iotivity-base-armeabi-v7a-debug-unspecified_89a3cd49dbde866e49d52112dea3d8f0381da433.jar" />
+    </item>
+    <item
+        jar="/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/build/intermediates/exploded-aar/EasySetup/EasySetupCore-debug/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="91947df2ee16559d7b36c7c779044717bd411bce">
+        <dex dex="/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/build/intermediates/pre-dexed/debug/EasySetup-EasySetupCore-debug-unspecified_0d99c6b6664425b7f6270aaee3a72ee09390b2bb.jar" />
+    </item>
+
+</items>

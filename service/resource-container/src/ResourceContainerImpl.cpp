@@ -68,53 +68,58 @@ namespace OIC
 
 
             activationLock.lock();
-            try{
-                if (!configFile.empty())
+            if (!configFile.empty())
+            {
+                m_config = new Configuration(configFile);
+
+                if (m_config->isLoaded())
                 {
-                    m_config = new Configuration(configFile);
+                    configInfo bundles;
+                    m_config->getConfiguredBundles(&bundles);
 
-                    if (m_config->isLoaded())
+                    for (unsigned int i = 0; i < bundles.size(); i++)
                     {
-                        configInfo bundles;
-                        m_config->getConfiguredBundles(&bundles);
-
-                        for (unsigned int i = 0; i < bundles.size(); i++)
+                        shared_ptr<BundleInfoInternal> bundleInfo(new BundleInfoInternal);
+                        bundleInfo->setPath(bundles[i][BUNDLE_PATH]);
+                        bundleInfo->setVersion(bundles[i][BUNDLE_VERSION]);
+                        bundleInfo->setID(bundles[i][BUNDLE_ID]);
+                        if (!bundles[i][BUNDLE_ACTIVATOR].empty())
                         {
-                            shared_ptr<BundleInfoInternal> bundleInfo(new BundleInfoInternal);
-                            bundleInfo->setPath(bundles[i][BUNDLE_PATH]);
-                            bundleInfo->setVersion(bundles[i][BUNDLE_VERSION]);
-                            bundleInfo->setID(bundles[i][BUNDLE_ID]);
-                            if (!bundles[i][BUNDLE_ACTIVATOR].empty())
-                            {
-                                string activatorName = bundles[i][BUNDLE_ACTIVATOR];
-                                std::replace(activatorName.begin(), activatorName.end(), '.', '/');
-                                bundleInfo->setActivatorName(activatorName);
-                                bundleInfo->setLibraryPath(bundles[i][BUNDLE_LIBRARY_PATH]);
-                            }
-
-                            OIC_LOG_V(INFO, CONTAINER_TAG, "Init Bundle:(%s)",
-                                     std::string(bundles[i][BUNDLE_ID] + ";" +
-                                                 bundles[i][BUNDLE_PATH]).c_str());
-
-                            registerBundle(bundleInfo);
-                            activateBundle(bundleInfo);
+                            string activatorName = bundles[i][BUNDLE_ACTIVATOR];
+                            std::replace(activatorName.begin(), activatorName.end(), '.', '/');
+                            bundleInfo->setActivatorName(activatorName);
+                            bundleInfo->setLibraryPath(bundles[i][BUNDLE_LIBRARY_PATH]);
                         }
-                    }
-                    else
-                    {
-                        OIC_LOG_V(ERROR, CONTAINER_TAG, "Container started with invalid configfile path.");
+
+                        OIC_LOG_V(INFO, CONTAINER_TAG, "Init Bundle:(%s)",
+                                 std::string(bundles[i][BUNDLE_ID] + ";" +
+                                             bundles[i][BUNDLE_PATH]).c_str());
+
+                        registerBundle(bundleInfo);
+                        activateBundle(bundleInfo);
                     }
                 }
                 else
                 {
-                    OIC_LOG_V(INFO, CONTAINER_TAG, "No configuration file for the container provided.");
+                    OIC_LOG_V(ERROR, CONTAINER_TAG, "Container started with invalid configfile path.");
                 }
+            }
+            else
+            {
+                OIC_LOG_V(INFO, CONTAINER_TAG, "No configuration file for the container provided.");
+            }
 
-                OIC_LOG(INFO, CONTAINER_TAG, "Resource container started.");
-            }catch(...){
-                OIC_LOG(INFO, CONTAINER_TAG, "Resource container failed starting.");
+            map<std::string, boost::thread >::iterator activatorIterator;
+
+            for (activatorIterator = m_activators.begin(); activatorIterator != m_activators.end();
+                 activatorIterator++)
+            {
+                activatorIterator->second.timed_join(
+                    boost::posix_time::seconds(BUNDLE_ACTIVATION_WAIT_SEC));
+                // wait for bundles to be activated
             }
             activationLock.unlock();
+            OIC_LOG(INFO, CONTAINER_TAG, "Resource container started.");
         }
 
         void ResourceContainerImpl::stopContainer()
@@ -173,15 +178,11 @@ namespace OIC
         {
             OIC_LOG_V(INFO, CONTAINER_TAG, "Activating bundle: (%s)",
                      std::string(m_bundles[id]->getID()).c_str());
-
             activationLock.lock();
-            try{
-                activateBundleThread(id);
-            }
-            catch(...){
-                OIC_LOG_V(INFO, CONTAINER_TAG, "Activating bundle: (%s) failed",
-                                     std::string(m_bundles[id]->getID()).c_str());
-            }
+            auto f = std::bind(&ResourceContainerImpl::activateBundleThread, this,
+                               id);
+            boost::thread activator(f);
+            activator.timed_join(boost::posix_time::seconds(BUNDLE_SET_GET_WAIT_SEC));
             activationLock.unlock();
             OIC_LOG_V(INFO, CONTAINER_TAG, "Bundle activated: (%s)",
                      std::string(m_bundles[id]->getID()).c_str());
@@ -421,7 +422,7 @@ namespace OIC
 
                 }
             }
-            OIC_LOG_V(INFO, CONTAINER_TAG, "Container get request for %s finished, %d attributes",strResourceUri.c_str(), attr.size());
+            OIC_LOG_V(INFO, CONTAINER_TAG, "Container get request for %s finished, %zu attributes",strResourceUri.c_str(), attr.size());
 
             return RCSGetResponse::create(std::move(attr), 200);
         }
@@ -433,7 +434,7 @@ namespace OIC
             std::list<std::string> lstAttributes;
             std::string strResourceUri = request.getResourceUri();
 
-            OIC_LOG_V(INFO, CONTAINER_TAG, "Container set request for %s, %d attributes",strResourceUri.c_str(), attributes.size());
+            OIC_LOG_V(INFO, CONTAINER_TAG, "Container set request for %s, %zu attributes",strResourceUri.c_str(), attributes.size());
 
             if (m_mapServers.find(strResourceUri) != m_mapServers.end()
                 && m_mapResources.find(strResourceUri) != m_mapResources.end())
@@ -816,10 +817,11 @@ namespace OIC
         {
             OIC_LOG_V(DEBUG, CONTAINER_TAG, "Discover input resource %s", outputResourceUri.c_str());
             auto foundOutputResource = m_mapResources.find(outputResourceUri);
+           // auto resourceProperty = foundOutputResource->second->m_mapResourceProperty;
 
             resourceInfo info;
             m_config->getResourceConfiguration(foundOutputResource->second->m_bundleId,
-                outputResourceUri, &info);
+                    foundOutputResource->second->m_name, &info);
             map< string, vector< map< string, string > > > resourceProperty = info.resourceProperty;
 
             try
@@ -1000,7 +1002,7 @@ namespace OIC
             options[0].optionString = optionString;
             char classpath[1000];
             strcpy(classpath, "-Djava.class.path=");
-            strncat(classpath, bundleInfo->getPath().c_str(), BUNDLE_PATH_MAXLEN);
+            strcat(classpath, bundleInfo->getPath().c_str());
 
             OIC_LOG(INFO, CONTAINER_TAG,
                    std::string("Configured classpath: ").append(classpath).c_str());
@@ -1009,7 +1011,7 @@ namespace OIC
 
             char libraryPath[1000];
             strcpy(libraryPath, "-Djava.library.path=");
-            strncat(libraryPath, bundleInfo->getLibraryPath().c_str(), BUNDLE_PATH_MAXLEN);
+            strcat(libraryPath, bundleInfo->getLibraryPath().c_str());
             options[2].optionString = libraryPath;
 
             OIC_LOG(INFO, CONTAINER_TAG,

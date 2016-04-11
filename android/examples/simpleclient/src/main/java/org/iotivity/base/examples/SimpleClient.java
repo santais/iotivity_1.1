@@ -78,7 +78,6 @@ public class SimpleClient extends Activity implements
         Context context = this;
 
         PlatformConfig platformConfig = new PlatformConfig(
-                this,
                 context,
                 ServiceType.IN_PROC,
                 ModeType.CLIENT,

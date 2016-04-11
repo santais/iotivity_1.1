@@ -174,7 +174,6 @@ void StartContainer(std::string configPath)
     {
         g_pResourceContainer->startContainer(configPath);
         g_bContainerStarted = true;
-        std::cout << "Container started." << std::endl;
     }
     else
     {

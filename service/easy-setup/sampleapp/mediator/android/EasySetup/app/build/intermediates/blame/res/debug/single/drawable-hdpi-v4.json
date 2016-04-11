@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/src/main/res/drawable-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon.png",
+        "source": "/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/src/main/res/drawable-hdpi/icon.png"
+    },
+    {
+        "merged": "/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/background.png",
+        "source": "/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/src/main/res/drawable-hdpi/background.png"
+    },
+    {
+        "merged": "/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/cancel.png",
+        "source": "/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/src/main/res/drawable-hdpi/cancel.png"
+    }
+]

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.iotivity.service.easysetup.MainActivity" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"/>
+
+</menu>
+<!-- From: file:/home/markpovlsen/Documents/iotivity/service/easy-setup/sampleapp/mediator/android/EasySetup/app/src/main/res/menu/main.xml -->
